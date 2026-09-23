@@ -1,0 +1,263 @@
+/*
+ * Salegent design tokens.
+ *
+ * Single source of truth for every color, shadow, gradient and surface in the
+ * dashboard. Change a value here and it propagates to Tailwind utilities (see
+ * globals.css), shadcn/ui components and the SVG charts.
+ *
+ * Theme resolution:
+ *   1. [data-theme="dark" | "light"] on <html> wins (set by the toggle, persisted
+ *      in localStorage under "theme").
+ *   2. Otherwise prefers-color-scheme decides.
+ */
+
+:root {
+  /* ---- Core palette ---- */
+  --brand: #6366f1;
+  --brand-2: #7d7ff7; /* nav pill gradient end */
+  --brand-3: #8184f8; /* share button gradient end */
+
+  --ink: #161a33;
+  --sub: #4a4f6a;
+  --muted: #6b7089;
+  --bg: #f1f2fb;
+  --card: rgba(255, 255, 255, 0.82);
+  --line: #e6e8f1;
+  --chip: #eef0f8;
+  --nav: rgba(255, 255, 255, 0.55);
+  --navBorder: rgba(255, 255, 255, 0.7);
+  --tool: rgba(255, 255, 255, 0.85);
+  --ring: #ffffff; /* avatar ring */
+  --okbg: #e6f8ed;
+  --ok: #16a34a;
+  --live: #34d27a; /* status dot */
+
+  /* ---- Charts ---- */
+  --barBg: #dfe2ee;
+  --barFg: #3a3f5e;
+  --barMid: #9aa0bb;
+  --fcShade: rgba(236, 238, 247, 0.7);
+  --fcGrid: #e3e5ef;
+  --fcBase: #c9ccdc;
+  --fcSeg: #7074ee;
+  --fcSeg2: #b6b9f6;
+  --fcCross: #23284a;
+
+  /* Dot-matrix series (theme independent) */
+  --dot-pink: #f0609b;
+  --dot-pink-soft: #f9a8c9;
+  --dot-blue: #3b82f6;
+  --dot-blue-soft: #93c5fd;
+  --dot-green: #22c55e;
+  --dot-green-soft: #86efac;
+  --dot-indigo: #4f46e5;
+  --dot-indigo-soft: #a5b4fc;
+
+  /* ---- Light effects ---- */
+  --sheen: rgba(255, 255, 255, 0.95);
+  --halo: rgba(170, 176, 255, 0.35);
+  --neutralGlow: 0.5;
+
+  /* Bloom colors behind the cards */
+  --glow-mint: #2fe083;
+  --glow-magenta: #f04fe6;
+  --glow-pipeline: #7478f5;
+  --glow-pipeline-top: #c09cff;
+  --glow-pink: #ff5f8d;
+  --glow-sky: #5d9dff;
+  --glow-neutral: #bfc3ff;
+  --glow-neutral-2: #c7cbff;
+
+  /* ---- Shadows ---- */
+  --shadow-card-value: 0 10px 30px -12px rgba(88, 96, 170, 0.18), 0 2px 6px -2px rgba(88, 96, 170, 0.06);
+  --shadow-pill-value: 0 6px 16px -6px rgba(99, 102, 241, 0.55);
+  --shadow-soft-value: 0 4px 12px -4px rgba(88, 96, 170, 0.18);
+  --shadow-nav-value: 0 2px 10px -4px rgba(88, 96, 170, 0.15);
+
+  /* ---- Page background ---- */
+  --bgfx:
+    radial-gradient(900px 500px at 8% 0%, #eef0ff 0%, transparent 60%),
+    radial-gradient(700px 500px at 100% 0%, #f6ecff 0%, transparent 60%),
+    radial-gradient(900px 600px at 55% 55%, #ebeefe 0%, transparent 65%),
+    radial-gradient(700px 400px at 100% 100%, #f1f0ff 0%, transparent 60%),
+    linear-gradient(180deg, #f3f4fc 0%, #eef0fa 100%);
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/*
+ * Dark values. Declared twice on purpose: once for
+ * "system is dark and the user has not forced light", once for "user forced dark".
+ * Keep the two blocks identical.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #eef0ff;
+    --sub: #a9aecb;
+    --muted: #8b90ae;
+    --bg: #0c0f1f;
+    --card: rgba(26, 30, 58, 0.72);
+    --line: rgba(255, 255, 255, 0.08);
+    --chip: rgba(255, 255, 255, 0.07);
+    --nav: rgba(255, 255, 255, 0.06);
+    --navBorder: rgba(255, 255, 255, 0.08);
+    --tool: rgba(255, 255, 255, 0.08);
+    --ring: #1a1e3a;
+    --okbg: rgba(34, 197, 94, 0.16);
+    --ok: #4ade80;
+    --barBg: rgba(255, 255, 255, 0.08);
+    --barFg: #cdd0f7;
+    --barMid: #6c71a3;
+    --fcShade: rgba(255, 255, 255, 0.035);
+    --fcGrid: rgba(255, 255, 255, 0.07);
+    --fcBase: rgba(255, 255, 255, 0.22);
+    --fcSeg: #8f93fa;
+    --fcSeg2: #4e5299;
+    --fcCross: #e8eaff;
+    --sheen: rgba(255, 255, 255, 0.1);
+    --halo: rgba(120, 128, 255, 0.22);
+    --neutralGlow: 0.28;
+    --bgfx:
+      radial-gradient(900px 500px at 8% 0%, #1c2150 0%, transparent 60%),
+      radial-gradient(700px 500px at 100% 0%, #2a1b4d 0%, transparent 60%),
+      radial-gradient(900px 600px at 55% 55%, #161b3e 0%, transparent 65%),
+      radial-gradient(700px 400px at 100% 100%, #1f1a45 0%, transparent 60%),
+      linear-gradient(180deg, #0f1226 0%, #0b0e1d 100%);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #eef0ff;
+  --sub: #a9aecb;
+  --muted: #8b90ae;
+  --bg: #0c0f1f;
+  --card: rgba(26, 30, 58, 0.72);
+  --line: rgba(255, 255, 255, 0.08);
+  --chip: rgba(255, 255, 255, 0.07);
+  --nav: rgba(255, 255, 255, 0.06);
+  --navBorder: rgba(255, 255, 255, 0.08);
+  --tool: rgba(255, 255, 255, 0.08);
+  --ring: #1a1e3a;
+  --okbg: rgba(34, 197, 94, 0.16);
+  --ok: #4ade80;
+  --barBg: rgba(255, 255, 255, 0.08);
+  --barFg: #cdd0f7;
+  --barMid: #6c71a3;
+  --fcShade: rgba(255, 255, 255, 0.035);
+  --fcGrid: rgba(255, 255, 255, 0.07);
+  --fcBase: rgba(255, 255, 255, 0.22);
+  --fcSeg: #8f93fa;
+  --fcSeg2: #4e5299;
+  --fcCross: #e8eaff;
+  --sheen: rgba(255, 255, 255, 0.1);
+  --halo: rgba(120, 128, 255, 0.22);
+  --neutralGlow: 0.28;
+  --bgfx:
+    radial-gradient(900px 500px at 8% 0%, #1c2150 0%, transparent 60%),
+    radial-gradient(700px 500px at 100% 0%, #2a1b4d 0%, transparent 60%),
+    radial-gradient(900px 600px at 55% 55%, #161b3e 0%, transparent 65%),
+    radial-gradient(700px 400px at 100% 100%, #1f1a45 0%, transparent 60%),
+    linear-gradient(180deg, #0f1226 0%, #0b0e1d 100%);
+}
+
+/*
+ * Surfaces. Each colored card is a stack of radial blooms over a linear base,
+ * plus an inner light (top sheen + inner bloom).
+ */
+@layer components {
+  .surface-bgfx {
+    background: var(--bgfx);
+  }
+
+  .surface-glass {
+    background: var(--card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 var(--sheen),
+      0 0 0 1px var(--navBorder),
+      0 22px 50px -20px rgba(110, 118, 210, 0.38),
+      0 0 60px -8px var(--halo);
+  }
+
+  .surface-pipeline {
+    background:
+      radial-gradient(420px 320px at 70% 8%, rgba(190, 160, 255, 0.55) 0%, transparent 70%),
+      radial-gradient(400px 300px at 10% 40%, rgba(160, 170, 255, 0.35) 0%, transparent 70%),
+      linear-gradient(180deg, #8a8ff8 0%, #7a80f5 45%, #6f76f1 100%);
+  }
+
+  .surface-pink {
+    background:
+      radial-gradient(160px 110px at 45% 85%, rgba(255, 95, 140, 0.95) 0%, transparent 75%),
+      radial-gradient(220px 160px at 60% 10%, rgba(255, 160, 185, 0.9) 0%, transparent 70%),
+      linear-gradient(160deg, #ff8fae 0%, #ff6f98 55%, #ffa2bd 100%);
+  }
+
+  .surface-sky {
+    background:
+      radial-gradient(160px 110px at 50% 90%, rgba(170, 210, 255, 0.95) 0%, transparent 75%),
+      radial-gradient(220px 160px at 30% 10%, rgba(100, 160, 255, 0.95) 0%, transparent 70%),
+      linear-gradient(160deg, #5e9dff 0%, #7fb4ff 55%, #b5d6ff 100%);
+  }
+
+  .surface-mint {
+    background:
+      radial-gradient(160px 120px at 50% 70%, rgba(40, 210, 120, 0.9) 0%, transparent 75%),
+      linear-gradient(165deg, #6fe39f 0%, #3fd784 45%, #8cf0b4 100%);
+  }
+
+  .surface-magenta {
+    background:
+      radial-gradient(170px 130px at 50% 55%, rgba(240, 80, 230, 0.95) 0%, transparent 75%),
+      linear-gradient(165deg, #f6a4f2 0%, #ef6ce9 45%, #f6b9f4 100%);
+  }
+
+  .surface-pipeline,
+  .surface-pink,
+  .surface-sky,
+  .surface-mint,
+  .surface-magenta {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+      inset 0 18px 40px -18px rgba(255, 255, 255, 0.55),
+      inset 0 -30px 50px -30px rgba(255, 255, 255, 0.35);
+  }
+
+  /* Diagonal hatch used behind the pipeline chart */
+  .surface-hatch {
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px 14px);
+  }
+
+  /* Soft outer bloom: a blurred color layer sitting behind a card */
+  .glow {
+    position: absolute;
+    border-radius: 28px;
+    filter: blur(34px);
+    pointer-events: none;
+  }
+
+  .brand-gradient {
+    background-image: linear-gradient(to right, var(--brand), var(--brand-2));
+  }
+
+  .brand-gradient-alt {
+    background-image: linear-gradient(to right, var(--brand), var(--brand-3));
+  }
+
+  /* Theme cross-fade */
+  .theme-transition {
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
